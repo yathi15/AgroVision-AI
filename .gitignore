@@ -1,0 +1,7 @@
+datasets/
+backend/venv/
+backend/*.db
+backend/models/*.pth
+backend/models/*.pkl
+__pycache__/
+.env
