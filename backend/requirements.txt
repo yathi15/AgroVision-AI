@@ -1,0 +1,13 @@
+bcrypt
+fastapi
+groq
+numpy
+pandas
+pillow
+psycopg[binary]
+python-dotenv
+python-jose
+python-multipart
+requests
+SQLAlchemy
+uvicorn

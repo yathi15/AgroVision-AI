@@ -1,0 +1,63 @@
+.an-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(6, 26, 15, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.an-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.an-brand { display: flex; align-items: center; gap: 12px; }
+.an-logo {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center; font-size: 22px;
+  background: linear-gradient(135deg, #6fcf4a, #2e9e44);
+}
+.an-brand h1 { margin: 0; font-size: 18px; color: #fff; font-weight: 700; line-height: 1.2; }
+.an-brand span { font-size: 12px; color: #9bb5a3; }
+
+.an-links, .an-auth-links { display: flex; gap: 6px; }
+.an-link {
+  display: flex; align-items: center; gap: 6px;
+  padding: 9px 16px; border-radius: 999px; white-space: nowrap;
+  color: #cfe0d4; text-decoration: none; font-size: 14px; font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.an-link:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.an-active { background: #a6e05a; color: #0b2312 !important; }
+
+.an-user { position: relative; }
+.an-avatar {
+  width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+  border: 2px solid #a6e05a; background: #12301c; color: #a6e05a;
+  font-weight: 700; font-size: 16px;
+}
+.an-avatar:hover { background: #194028; }
+.an-menu {
+  position: absolute; right: 0; top: 52px; min-width: 190px;
+  background: #0f2a19; border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px; padding: 14px; color: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+.an-menu p { margin: 0; font-size: 12px; color: #9bb5a3; }
+.an-menu strong { display: block; margin-bottom: 12px; }
+.an-menu button {
+  width: 100%; padding: 9px; border: 0; border-radius: 8px; cursor: pointer;
+  background: #a6e05a; color: #0b2312; font-weight: 600;
+}
+
+.an-main { max-width: 1280px; margin: 0 auto; padding: 32px; }
+
+@media (max-width: 960px) {
+  .an-inner { flex-wrap: wrap; padding: 12px 16px; }
+  .an-links { order: 3; width: 100%; overflow-x: auto; }
+  .an-main { padding: 20px 16px; }
+}

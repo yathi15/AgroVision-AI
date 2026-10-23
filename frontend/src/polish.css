@@ -1,0 +1,236 @@
+/* ============ GLOBAL BACKGROUND ============ */
+body {
+  background:
+    radial-gradient(ellipse 55% 42% at 8% 8%, rgba(38, 132, 76, 0.24), transparent 72%),
+    radial-gradient(ellipse 44% 38% at 94% 22%, rgba(166, 224, 90, 0.12), transparent 72%),
+    radial-gradient(ellipse 58% 46% at 50% 100%, rgba(16, 106, 87, 0.17), transparent 72%),
+    linear-gradient(145deg, #0a2415 0%, #071a10 48%, #04110b 100%) !important;
+  background-attachment: fixed !important;
+  color: #e8f3ea;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Add soft, page-sized color accents without covering interactive content. */
+.an-main {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: none;
+  min-height: calc(100vh - 62px);
+  margin: 0;
+  padding: 0;
+  background: #071a10;
+}
+.an-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 4% 4%, rgba(46, 158, 68, 0.12), transparent 40%),
+    radial-gradient(ellipse at 96% 34%, rgba(166, 224, 90, 0.07), transparent 36%);
+}
+
+.auth-main {
+  background:
+    radial-gradient(ellipse 36rem 28rem at 18% 35%, rgba(46, 158, 68, 0.2), transparent 72%),
+    radial-gradient(ellipse 32rem 26rem at 84% 72%, rgba(166, 224, 90, 0.1), transparent 72%);
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative !important;
+  width: 100% !important;
+  min-height: max(560px, calc(100vh - 62px)) !important;
+  min-height: max(560px, calc(100svh - 62px)) !important;
+  margin: 0 !important;
+  padding: clamp(24px, 5vw, 64px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background:
+    linear-gradient(180deg, rgba(4, 17, 10, 0.55) 0%, rgba(4, 17, 10, 0.25) 40%, rgba(4, 17, 10, 0.92) 100%),
+    url("/hero.avif") center / cover no-repeat,
+    linear-gradient(135deg, #1d5a2b, #0a2412) !important;
+}
+.hero-art { display: none !important; }   /* hides the SVG drawing, photo shows instead */
+
+.hero-eyebrow {
+  position: static !important;
+  font-size: 12px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+.hero-title {
+  position: static !important;
+  margin: 8px 0 !important;
+  font-size: clamp(3rem, 10vw, 8rem) !important;
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em;
+  color: #fff !important;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+.hero-title em { color: #a6e05a !important; font-style: normal; }
+
+.hero-row {
+  position: static !important;
+  display: flex !important; flex-wrap: wrap;
+  align-items: flex-end; justify-content: space-between; gap: 32px;
+}
+.hero-copy { max-width: 520px; }
+.hero-copy h2 { margin: 0 0 8px; font-size: 28px; color: #fff; }
+.hero-copy p { margin: 0 0 22px; color: rgba(255, 255, 255, 0.82); line-height: 1.6; }
+
+.hero-stats {
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.stat {
+  min-width: 130px; padding: 16px 20px; border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+}
+.stat b { display: block; font-size: 26px; color: #a6e05a; }
+.stat span { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); }
+
+/* ============ BUTTONS ============ */
+.btn-lime,
+.an-main button[type="submit"],
+.auth-main button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 26px; border: 0; border-radius: 999px; cursor: pointer;
+  font-size: 15px; font-weight: 700; text-decoration: none;
+  color: #0b2312;
+  background: linear-gradient(135deg, #b8f060, #8bd13f);
+  box-shadow: 0 8px 24px rgba(166, 224, 90, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-lime:hover,
+.an-main button[type="submit"]:hover,
+.auth-main button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(166, 224, 90, 0.45); }
+
+.an-main button:not([type="submit"]) {
+  padding: 11px 18px; border-radius: 12px; cursor: pointer; font-weight: 600;
+  color: #e8f3ea; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.an-main button:not([type="submit"]):hover { background: rgba(255, 255, 255, 0.14); }
+.an-main button:disabled, .auth-main button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ============ SECTIONS ============ */
+.section { margin-top: 72px; text-align: center; }
+.section-eyebrow { font-size: 12px; letter-spacing: 0.35em; text-transform: uppercase; color: #a6e05a; }
+.big { font-size: clamp(1.8rem, 4vw, 3rem); margin: 10px 0; color: #fff; font-weight: 800; }
+.big em { color: #a6e05a; font-style: normal; }
+.section-sub { color: #9bb5a3; max-width: 560px; margin: 0 auto 40px; }
+
+.grid-actions {
+  display: grid; gap: 22px; text-align: left;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.action-card {
+  position: relative; display: flex; flex-direction: column; gap: 10px;
+  padding: 28px 24px; border-radius: 22px; text-decoration: none; color: #e8f3ea;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.action-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(166, 224, 90, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(166, 224, 90, 0.2);
+}
+.action-tag {
+  align-self: flex-start; padding: 4px 12px; border-radius: 999px;
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: #a6e05a; background: rgba(166, 224, 90, 0.12);
+}
+.action-ico {
+  width: 56px; height: 56px; border-radius: 16px; font-size: 28px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, rgba(166, 224, 90, 0.25), rgba(46, 158, 68, 0.25));
+}
+.action-card h3 { margin: 6px 0 0; font-size: 20px; color: #fff; }
+.action-card p { margin: 0; color: #9bb5a3; line-height: 1.55; font-size: 14px; flex: 1; }
+.action-go { display: flex; justify-content: space-between; margin-top: 8px; font-weight: 600; color: #a6e05a; }
+.action-arrow { transition: transform 0.2s; }
+.action-card:hover .action-arrow { transform: translateX(6px); }
+
+.info-row { display: grid; gap: 22px; margin-top: 28px; text-align: left; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.glass {
+  padding: 28px; border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+.glass .eyebrow { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: #a6e05a; }
+.glass h3 { margin: 8px 0; color: #fff; }
+.glass p, .glass li { color: #b6cbbc; line-height: 1.6; }
+
+.footline {
+  margin-top: 64px; padding: 22px 0; display: flex; flex-wrap: wrap;
+  justify-content: space-between; gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px; color: #7f998a;
+}
+
+/* ============ FORMS (Land, Disease, Harvest, Marketing) ============ */
+.an-main h1, .an-main h2 { color: #fff; }
+.an-main label { color: #cfe0d4; font-weight: 500; }
+
+.an-main input, .an-main select, .an-main textarea,
+.auth-main input, .auth-main select {
+  width: 100%; padding: 14px 16px; font-size: 15px; font-family: inherit;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important; outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.an-main input::placeholder, .auth-main input::placeholder { color: rgba(255, 255, 255, 0.45); }
+.an-main input:focus, .an-main select:focus, .an-main textarea:focus,
+.auth-main input:focus {
+  border-color: #a6e05a !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(166, 224, 90, 0.18);
+}
+.an-main select option { color: #0b2312; }
+.an-main input[type="file"]::file-selector-button {
+  margin-right: 12px; padding: 8px 14px; border: 0; border-radius: 8px; cursor: pointer;
+  background: #a6e05a; color: #0b2312; font-weight: 600;
+}
+
+/* ============ LOGIN / REGISTER CARD ============ */
+.auth-main {
+  min-height: calc(100vh - 80px);
+  display: grid; place-items: center; padding: 32px 16px;
+}
+.auth-main > * {
+  width: 100%; max-width: 440px;
+  padding: 36px 32px; border-radius: 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+.auth-main h1, .auth-main h2 { margin: 0 0 6px; text-align: center; color: #fff; font-size: 26px; }
+.auth-main a { color: #a6e05a; }
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: max(600px, calc(100vh - 96px)) !important;
+    min-height: max(600px, calc(100svh - 96px)) !important;
+    padding: 24px !important;
+    background-position: center center !important;
+  }
+}
