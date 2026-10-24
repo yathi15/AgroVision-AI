@@ -4,14 +4,37 @@ AgroVision AI is a web app for farmers. It combines a React frontend with a Fast
 
 ## How the project works
 
-```text
-Farmer
-  -> React app (frontend/)
-  -> FastAPI API (backend/)
-       -> SQLite locally, or PostgreSQL when DATABASE_URL is configured
-       -> Groq for AI-powered analysis and chat
-       -> CEDA / data.gov.in for market data
-       -> free weather providers for forecasts
+```mermaid
+flowchart TD
+    farmer[Farmer] --> frontend[React and Vite frontend]
+    frontend --> auth{Sign up or log in}
+    auth --> authApi[FastAPI authentication API]
+    authApi --> database[(SQLite or PostgreSQL)]
+    authApi -->|Login succeeds: JWT returned| frontend
+    frontend -->|Authenticated session| dashboard[Protected dashboard]
+
+    dashboard --> land[Land analysis]
+    dashboard --> disease[Crop disease detection]
+    dashboard --> harvest[Harvest planning]
+    dashboard --> market[Market advice]
+    dashboard --> chat[Farming chat assistant]
+
+    land --> api[FastAPI backend]
+    disease --> api
+    harvest --> api
+    market --> api
+    chat --> api
+    api -->|Image analysis and chat| groq[Groq AI]
+    api -->|Prices and history| markets[CEDA or data.gov.in]
+    harvest -->|Location forecast request| api
+    api -->|Weather forecast| weather[Weather providers]
+    api -->|Account data| database
+
+    groq --> api
+    markets --> api
+    weather --> api
+    api -->|Recommendations and results| frontend
+    frontend --> farmer
 ```
 
 ### Main user workflow
