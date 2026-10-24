@@ -2,41 +2,6 @@
 
 AgroVision AI is a web app for farmers. It combines a React frontend with a FastAPI backend to provide crop and farm guidance, image-based analysis, weather forecasts, and market information.
 
-## How the project works
-
-```mermaid
-flowchart TD
-    farmer[Farmer] --> frontend[React and Vite frontend]
-    frontend --> auth{Sign up or log in}
-    auth --> authApi[FastAPI authentication API]
-    authApi --> database[(SQLite or PostgreSQL)]
-    authApi -->|Login succeeds: JWT returned| frontend
-    frontend -->|Authenticated session| dashboard[Protected dashboard]
-
-    dashboard --> land[Land analysis]
-    dashboard --> disease[Crop disease detection]
-    dashboard --> harvest[Harvest planning]
-    dashboard --> market[Market advice]
-    dashboard --> chat[Farming chat assistant]
-
-    land --> api[FastAPI backend]
-    disease --> api
-    harvest --> api
-    market --> api
-    chat --> api
-    api -->|Image analysis and chat| groq[Groq AI]
-    api -->|Prices and history| markets[CEDA or data.gov.in]
-    harvest -->|Location forecast request| api
-    api -->|Weather forecast| weather[Weather providers]
-    api -->|Account data| database
-
-    groq --> api
-    markets --> api
-    weather --> api
-    api -->|Recommendations and results| frontend
-    frontend --> farmer
-```
-
 ### Main user workflow
 
 1. A farmer creates an account or logs in. The backend verifies credentials and returns a JWT; the frontend uses it for authenticated features.
@@ -95,10 +60,17 @@ Open the local URL printed by Vite. The frontend uses `http://127.0.0.1:8000` by
 ## Production notes
 
 - Use a managed PostgreSQL database and set `DATABASE_URL` in the backend hosting environment.
-- Set a strong, private JWT signing key through an environment variable before public deployment; do not use the development key currently in the backend.
-- Configure CORS to allow only the deployed frontend origin instead of every origin.
+- Set a strong, private `JWT_SECRET_KEY` in the backend environment. The API will not start without it.
+- Set `FRONTEND_ORIGINS` to the deployed frontend URL. Multiple comma-separated origins are supported.
 - Set `VITE_API_URL` to the deployed backend URL and provide required API keys through the host's secret/environment-variable settings.
 - Build the frontend with `npm run build` and deploy the generated `frontend/dist` directory with a static hosting service. Run the backend with an ASGI server such as Uvicorn.
+
+### Deploy on Render
+
+- Create a Web Service from the `master` branch with `backend` as its root directory, `pip install -r requirements.txt` as the build command, and `uvicorn main:app --host 0.0.0.0 --port $PORT` as the start command.
+- Create a Render PostgreSQL database and set the backend's `DATABASE_URL` to its internal connection URL.
+- Add `GROQ_API_KEY`, `JWT_SECRET_KEY`, and `FRONTEND_ORIGINS` to the backend's environment variables. Set `FRONTEND_ORIGINS` to the deployed static site's URL. Add `CEDA_API_KEY` or `DATA_GOV_IN_API_KEY` if those data integrations are used.
+- Create a Static Site from the `master` branch with `frontend` as its root directory, `npm install && npm run build` as the build command, and `dist` as the publish directory. Set `VITE_API_URL` to the backend's public URL.
 
 ## Repository layout
 

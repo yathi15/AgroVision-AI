@@ -30,15 +30,25 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 MODEL = os.getenv("GROQ_MODEL", "qwen/qwen3.8-27b")
 CACHE = {}
 
-SECRET_KEY = "change-this-to-a-long-random-string"
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("JWT_SECRET_KEY must be set in the environment")
 ALGORITHM = "HS256"
+FRONTEND_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "FRONTEND_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173",
+    ).split(",")
+    if origin.strip()
+]
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="AgroVision AI")
 app.include_router(weather_router)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=FRONTEND_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )
